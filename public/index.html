@@ -3,14 +3,22 @@
   <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
       <title>Budget</title>
       <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>
+    <!-- Image and text -->
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      <img src="money.png" width="40" height="40" class="d-inline-block align-top" alt="">
+      The Simple Budget - Monitor your net cash income.
+    </a>
+  </nav>
     <div id ="root" class="flex-container">
 
-        <h1>The Simple Budget</h1>
+        
         
         <div class="card">
           <h3>Income:</h3>
@@ -51,7 +59,7 @@
             <h3>Your Dashboard:</h3>
             <div>Net Monthly Income : $ {{ diff }}</div>
             <div>{{ message }}</div>
-            <div>If Net Monthly Income stays constant, you will make $1000 in {{ long }} monthes.</div>
+            
         </div>
         <div class="card">
           <div id = "texto">
@@ -64,12 +72,14 @@
           <div>If Net Monthly Income stays constant, you will be able to afford purchase in {{ long }} monthes.</div>
         </div>
       </div>
+     
     </div>
     
   </body>
-  
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
+   
  
 </html>
