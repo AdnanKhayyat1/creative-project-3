@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <div id ="root">
+        <form v-on:submit.prevent="addIncome">
+            <input type="text" v-model="incomeDesc">
+            <input type="number" v-model="incomeNum">
+            <button type="submit">Add</button>
+          </form>
+          <ul>
+            <li v-for="item in income">
+              <span>{{ item.title }} -- ${{ item.amount }}</span>
+            </li>
+          </ul>
+          <span>Total Monthly Income : ${{ this.totalIncome }}</span>
+
+          
+          <form v-on:submit.prevent="addExpenses">
+              <select v-model="name" name="name" >
+                  <option v-for="name in names" :value="name">{{ name }}</option>
+               </select>
+               
+              <input type="text" v-model="expenseDesc">
+              <input type="number" v-model="expenseNum">
+              <button type="submit">Add</button>
+            </form>
+            <ul>
+              <li v-for="item in expenses">
+                <span>{{ item.title }} -- ${{ item.amount }} in category {{ item.category }}.</span>
+              </li>
+            </ul>
+            <span>Total Monthly Expense : ${{ this.totalExpense }}</span>
+            <span>Net Monthly Income : $ {{ diff }}</span>
+            <span>{{ message }}</span>
+            
+            <!-- <apexchart type=pie width=380 :options="chartOptions" :series="series" /> -->
+            <!-- <pie-chart :refresh="60" :data="chartData" ></pie-chart> -->
+            
+    </div>
+    
+  </body>
+  
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+ 
+</html>
