@@ -2,9 +2,7 @@
 let app = new Vue ({
     
     el:'#root',
-    components: {
-        apexchart: VueApexCharts,
-      },
+    
     data:{
         income: [],
         incomeDesc: '',
@@ -17,6 +15,9 @@ let app = new Vue ({
         totalExpense: 0,
 
         diff : 0,
+        long : 0,
+        desiredObj : 0,
+
         names: ['Rent', 'Bills and Debt', 'Food', 'Transportation', 'Education', 'Entertainment', 'Other'],
         chartData: [['Rent', 10], ['Bills and Debt', 20], ['Food', 0], ['Transportation', 0], ['Education', 0], ['Entertainment', 0], ['Other', 0]],
         name: '',
@@ -39,7 +40,11 @@ let app = new Vue ({
         }
     },
     methods:{
-
+        longTerm(){
+          if(this.diff > 0){
+              this.long = Math.round(parseInt(this.desiredObj) / parseInt(this.diff));  
+          }
+        },
         financialStatus() {
             if(this.diff >= 100){
                 this.message = "You're financially stable";
@@ -61,6 +66,7 @@ let app = new Vue ({
           this.totalIncome = parseInt(this.totalIncome) + parseInt(this.incomeNum);
           this.diff = this.totalIncome - this.totalExpense;
           this.financialStatus();
+          this.longTerm();
           this.incomeNum = '';
           
         },
@@ -78,6 +84,7 @@ let app = new Vue ({
         }
         this.diff = this.totalIncome - this.totalExpense;
         this.financialStatus();
+        this.longTerm();
           this.expenseDesc = '';
           this.expenseNum = '';
           this.name = '';

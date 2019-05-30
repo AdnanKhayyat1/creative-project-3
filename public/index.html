@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Budget</title>
+      <link href="style.css" rel="stylesheet" />
   </head>
+
   <body>
-    <div id ="root">
-        <form v-on:submit.prevent="addIncome">
-            <input type="text" v-model="incomeDesc">
-            <input type="number" v-model="incomeNum">
+    <div id ="root" class="flex-container">
+
+        <h1>The Simple Budget</h1>
+        
+        <div class="card">
+          <h3>Income:</h3>
+          <form v-on:submit.prevent="addIncome">
+            <input type="text" v-model="incomeDesc" placeholder="Description">
+            <input type="number" v-model="incomeNum"> <br>
             <button type="submit">Add</button>
           </form>
           <ul>
@@ -15,16 +24,18 @@
               <span>{{ item.title }} -- ${{ item.amount }}</span>
             </li>
           </ul>
-          <span>Total Monthly Income : ${{ this.totalIncome }}</span>
+          <div class="total">Total Monthly Income : ${{ this.totalIncome }}</div>
+        </div>
 
-          
+        <div class="card">
+            <h3>Expenses:</h3>
           <form v-on:submit.prevent="addExpenses">
-              <select v-model="name" name="name" >
+              <select v-model="name" name="name">
                   <option v-for="name in names" :value="name">{{ name }}</option>
                </select>
                
-              <input type="text" v-model="expenseDesc">
-              <input type="number" v-model="expenseNum">
+              <input type="text" v-model="expenseDesc" placeholder="Description">
+              <input type="number" v-model="expenseNum"> <br>
               <button type="submit">Add</button>
             </form>
             <ul>
@@ -32,13 +43,27 @@
                 <span>{{ item.title }} -- ${{ item.amount }} in category {{ item.category }}.</span>
               </li>
             </ul>
-            <span>Total Monthly Expense : ${{ this.totalExpense }}</span>
-            <span>Net Monthly Income : $ {{ diff }}</span>
-            <span>{{ message }}</span>
             
-            <!-- <apexchart type=pie width=380 :options="chartOptions" :series="series" /> -->
-            <!-- <pie-chart :refresh="60" :data="chartData" ></pie-chart> -->
-            
+            <div>Total Monthly Expense : ${{ this.totalExpense }}</div>
+        </div>
+
+        <div class="card" text-align = 'center'>
+            <h3>Your Dashboard:</h3>
+            <div>Net Monthly Income : $ {{ diff }}</div>
+            <div>{{ message }}</div>
+            <div>If Net Monthly Income stays constant, you will make $1000 in {{ long }} monthes.</div>
+        </div>
+        <div class="card">
+          <div id = "texto">
+          <h3>Looking forward to buy something big?</h3>
+          <p><i>Enter the price of desired object:</i></p>
+          <form v-on:submit.prevent="longTerm">
+          <input type="text" v-model="desiredObj" placeholder="Price of desired purhcase">
+          <button type="submit">Add</button>
+        </form>
+          <div>If Net Monthly Income stays constant, you will be able to afford purchase in {{ long }} monthes.</div>
+        </div>
+      </div>
     </div>
     
   </body>
